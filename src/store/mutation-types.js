@@ -1,0 +1,7 @@
+export const MEMCACHE_LOGIN = 'MEMCACHE_LOGIN'
+export const LOGIN_OUT = 'LOGIN_OUT'
+export const ACCOUNT_LOGIN = 'ACCOUNT_LOGIN'
+export const METHEME_SET = 'METHEME_SET'
+export const SONGS_SET = 'SONGS_SET'
+export const SONGSINDEX_SET = 'SONGSINDEX_SET'
+export const LYSICWINDOW_SET = 'LYSICWINDOW_SET'
