@@ -47,9 +47,52 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      .imageCover {
-        width: 360px;
-        height: 360px;
+      .disc {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background-image: radial-gradient(5em 30em ellipse, #fff, #000);
+        // border: 2px solid rgba(19, 19, 19, 0.7);
+        box-shadow: 0 0 0 10px rgba(49, 54, 49, 0.4);
+        animation: animations1 12s linear infinite forwards;
+        animation-play-state: paused;
+        overflow: hidden;
+        // -webkit-transform: rotate(360deg);
+        // transform: rotate(360deg);
+        // animation: rotation 12s linear infinite;
+        // -moz-animation: rotation 12s linear infinite;
+        // -webkit-animation: rotation 12s linear infinite;
+        // -o-animation: rotation 12s linear infinite;
+        .imageCover {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes rotation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keyframes animations1 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
     }
     .lysic {
@@ -360,7 +403,9 @@
         ></div>
         <div class="song-lysic">
           <div class="song">
-            <img :src="songInfo.cover" class="imageCover" />
+            <div class="disc" ref="rotate">
+              <img :src="songInfo.cover" class="imageCover" />
+            </div>
           </div>
           <div class="lysic">
             <div class="songInfo">
@@ -679,6 +724,7 @@ export default {
       this.GetCover(index);
       this.GetLyric(this.songInfo.id);
       this.playing = true;
+      this.$refs.rotate.style.animationPlayState = "running";
       setTimeout(() => {
         this.totalTime = "00:00";
         audio.play();
@@ -703,10 +749,12 @@ export default {
       if (this.playing) {
         // 播放中,点击则为暂停
         this.playing = false;
+        this.$refs.rotate.style.animationPlayState = "paused";
         audio.pause();
       } else {
         // 暂停中,点击则为播放
         this.playing = true;
+        this.$refs.rotate.style.animationPlayState = "running";
         audio.play();
       }
     },
